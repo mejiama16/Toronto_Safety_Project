@@ -1,0 +1,260 @@
+---
+title: "My title"
+subtitle: "My subtitle if needed"
+author: Mariana Garcia Mejia
+thanks: "Code and data are available at: [https://github.com/mejiama16/Toronto_Safety_Project](https://github.com/mejiama16/Toronto_Safety_Project)."
+date: 08 May 2026
+date-format: long
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+# Load packages
+library(tidyverse)
+
+# Load data
+df <- read_csv("analysis_data.csv")
+```
+
+
+# Introduction
+
+Overview paragraph
+
+Estimand paragraph
+
+Results paragraph
+
+Why it matters paragraph
+
+Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
+
+
+
+
+
+
+# Data {#sec-data}
+
+## Overview
+
+We use the statistical programming language R [@citeR].... Our data [@shelter].... Following @tellingstories, we consider...
+
+Overview text
+
+## Homicides Overtime (2011-2026)
+
+
+Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
+
+
+
+Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+
+```{r}
+#| label: fig-hom-overtime-total
+#| fig-cap: Total homicides overtime (2011-2020)
+#| echo: false
+
+df |>
+  group_by(YEAR) |>
+  summarise(count = n()) |> # number of entries/homicides per year
+  ggplot(aes(x = YEAR, y = count)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = seq(2011, 2026, by = 1)) +
+  labs(
+    title = "Homicides per Year (2011-2020)",
+    x = "Year",
+    y = "Number of Homicides"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) # center
+```
+
+```{r}
+#| label: fig-hom-overtime-type
+#| fig-cap: Total homicides overtime by type (2011-2020)
+#| echo: false
+#| warning: false
+
+df |>
+  group_by(YEAR, HOMICIDE_TYPE) |>
+  summarise(count = n(), .groups = "drop") |>
+  ggplot(aes(x = YEAR, y = count, color = HOMICIDE_TYPE)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = seq(2011, 2026, by = 1)) +
+  labs(
+    title = "Homicides per Year by Type",
+    x = "Year",
+    y = "Number of Homicides",
+    color = "Homicide Type"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+#| label: fig-hom-type-bars
+#| fig-cap: Total homicides by type (2011-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  group_by(HOMICIDE_TYPE) |>
+  summarise(count = n(), .groups = "drop") |>
+  ggplot(aes(fct_reorder(HOMICIDE_TYPE, -count), y = count, fill = HOMICIDE_TYPE)) +
+  geom_col() +
+  labs(
+    title = "Homicides by Type (2011-2020)",
+    x = "Homicide Type",
+    y = "Number of Homicides",
+    fill = "Homicide Type"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+#| label: fig-hom-month
+#| fig-cap: Total homicides per month (2011-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  group_by(MONTH) |>
+  summarise(count = n(), .groups = "drop") |>
+  ggplot(aes(x = MONTH, y = count)) +
+  geom_col() +
+  labs(
+    title = "Homicides per Month (2011-2020)",
+    x = "Month",
+    y = "Number of Homicides",
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+#| label: table-top5-neighborhoods
+#| tbl-cap: Five neighborhoods with the most homicides (2011-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  group_by(NEIGHBORHOOD) |>
+  summarise(count = n(), .groups = "drop") |>
+  arrange(desc(count)) |>
+  slice(1:5) |>
+  knitr::kable(col.names = c("Neighbourhood", "Number of Homicides"))
+```
+
+```{r}
+#| label: table-top5-neighborhoods-recent
+#| tbl-cap: Five neighborhoods with the most homicides in recent years (2018-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  filter(YEAR == 2018 | YEAR == 2019 | YEAR == 2020) |>
+  group_by(NEIGHBORHOOD) |>
+  summarise(count = n(), .groups = "drop") |>
+  arrange(desc(count)) |>
+  slice(1:5) |>
+  knitr::kable(col.names = c("Neighbourhood", "Number of Homicides"))
+
+```
+
+
+```{r}
+#| label: table-top5-divisions
+#| tbl-cap: Five police divisions with the most homicides (2011-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  group_by(DIVISION) |>
+  summarise(count = n(), .groups = "drop") |>
+  arrange(desc(count)) |>
+  slice(1:5) |>
+  knitr::kable(col.names = c("Division", "Number of Homicides"))
+```
+
+```{r}
+#| label: table-top5-division-recent
+#| tbl-cap: Five neighborhoods with the most homicides in recent years (2018-2020)
+#| echo: false
+#| warning: false
+
+cleaned_data |>
+  filter(YEAR == 2018 | YEAR == 2019 | YEAR == 2020) |>
+  group_by(DIVISION) |>
+  summarise(count = n(), .groups = "drop") |>
+  arrange(desc(count)) |>
+  slice(1:5) |>
+  knitr::kable(col.names = c("Division", "Number of Homicides"))
+
+```
+
+
+Talk more about it.
+
+And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+
+```{r}
+#| label: fig-planes
+#| fig-cap: Relationship between wing length and width
+#| echo: false
+#| warning: false
+#| message: false
+
+analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
+
+analysis_data |> 
+  ggplot(aes(x = width, y = length)) +
+  geom_point(alpha = 0.8) +
+  theme_minimal() +
+  labs(x = "Wing width (mm)",
+       y = "Wing length (mm)")
+```
+
+Talk way more about it. 
+
+## Predictor variables
+
+Add graphs, tables and text.
+
+Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-stanareyouokay
+#| fig-cap: "Checking the convergence of the MCMC algorithm"
+#| fig-subcap: ["Trace plot", "Rhat plot"]
+#| layout-ncol: 2
+
+plot(first_model, "trace")
+
+plot(first_model, "rhat")
+```
+
+
+
+\newpage
+
+
+# References
+
+
