@@ -2,9 +2,8 @@
 
 ## Overview
 
-This repo contains the documentation of data dowloading, testing and analysis for my project: Patterns of Violence in Toronto: An
-Exploratory Analysis of Homicide Trends from
-2011 to 2020.
+This repo contains the documentation of data dowloading, testing and analysis for my project, **Patterns of Violence in Toronto: An
+Exploratory Analysis of Homicide Trends from 2011 to 2020.**
 
 ## File Structure
 
