@@ -1,6 +1,5 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated Toronto 
-  #homicides in 2025.
+# Purpose: Tests the structure and validity of the simulated Toronto homicides in 2025.
 # Author: Mariana Garcia Mejia
 # Date: 08 May 2026
 # Contact: mariana.garcia@mail.utoronto.ca

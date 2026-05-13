@@ -2,7 +2,7 @@
 # Purpose: Cleans the raw data obtained from OpenData Toronto.
 # Author: Mariana Garcia Mejia
 # Date: 08 May 2026.
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Contact: mariana.garcia@mail utoronto.ca
 # License: MIT
 # Pre-requisites: Package `tidyverse` must be installed.
 
@@ -27,6 +27,9 @@ cleaned_data <-
     HOMICIDE_TYPE = Homicide_Type,
     NEIGHBORHOOD = Neighbourhood,
     MONTH = Occurrence_Month
+  ) |>
+  mutate(YEAR = as.factor(YEAR),
+         DIVISION = if_else(DIVISION == "D54", "D55", DIVISION) # division 54 is now division 55
   )
 
 
@@ -34,3 +37,4 @@ glimpse(cleaned_data)
 
 #### Save data ####
 write_csv(cleaned_data, "data/02-analysis_data/analysis_data.csv")
+write_csv(cleaned_data, "paper/analysis_data.csv")
