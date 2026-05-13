@@ -2,8 +2,9 @@
 
 ## Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
-
+This repo contains the documentation of data dowloading, testing and analysis for my project: Patterns of Violence in Toronto: An
+Exploratory Analysis of Homicide Trends from
+2011 to 2020.
 
 ## File Structure
 
