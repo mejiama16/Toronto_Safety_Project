@@ -17,4 +17,4 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of Claude.
+Aspects of the code were written with the help of Claude.ai. Will provide a folder with all prompts soon.
