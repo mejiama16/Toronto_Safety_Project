@@ -1,4 +1,4 @@
-# Toronto_Safety_Project
+# Toronto Safety Project
 
 ## Overview
 
