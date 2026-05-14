@@ -155,7 +155,7 @@ df |>
 ```
 Turning to seasonal variation, Figure 4 reveals that homicides tend to follow a seasonal pattern consistent with broader criminological literature [@tiihonen1997], with higher homicide counts in the Summer and Fall due to higher outdoor activity. In the case of Toronto, we observe homicides cluster in the warmer months, with counts rising from June through September and before declining through the Winter and Spring (February through May). Interestingly, homicide counts are very similar in October, December and January, despite the weather being already relatively cold. As a result, it is unknown at this stage whether this "seasonal patterns" are statistically significant.
 
-## Homicides per Division (2011-2020)
+## Homicides per Division (2011-2020) {#sec-division}
 
 ```{r}
 #| label: table-top5-divisions
@@ -237,7 +237,7 @@ combined |>
         legend.position = "bottom")
 
 ```
-Figure 5 presents the relationship between gross expenditure and homicide counts across the six divisions with the highest homicide rates from 2018 to 2020 found in @table-top5-division-recent. We use gross expenditure as a proxy for divisional budget, acknowledging that expenditure reflects both operational costs and strategic investments, and may not perfectly capture the intensity of homicide-reduction efforts specifically in each area, nor the actual budget assigned to the division.
+Figure 5 presents the relationship between gross expenditure and homicide counts across the five divisions with the highest homicide rates from 2018 to 2020 found in @sec-division. We use gross expenditure as a proxy for divisional budget, acknowledging that expenditure reflects both operational costs and strategic investments, and may not perfectly capture the intensity of homicide-reduction efforts specifically in each area, nor the actual budget assigned to the division.
 
 Several patterns emerge across the four years. First, divisions like D51 shifted right between 2017 and 2018, that is, their budgets increased, consistent with the city-wide 3% budget increase in 2018. For these divisions, the budget increase, either in 2018 or after, coincided with a consistent decline in homicides in the years following 2018, lending some preliminary support to the idea that increased expenditure may contribute to improved safety outcomes. 
 
